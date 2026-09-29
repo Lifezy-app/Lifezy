@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <title>Lifezy</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="Lifezy – Haz tu vida más fácil. Guías para ahorrar, estudiar y organizar tus comidas.">
+<meta name="description" content="Lifezy – Haz tu vida fácil. Guías para ahorrar, estudiar y organizar tus comidas.">
 <meta name="theme-color" content="#2350E0">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" href="icon.svg" type="image/svg+xml">
@@ -251,6 +251,32 @@ code.c{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13px;font-wei
 .updbar .btn{background:var(--surface);color:var(--fg);border-color:var(--surface)}
 .linkish{background:none;border:0;color:var(--accent);padding:0;font-weight:600;text-decoration:underline;cursor:pointer}
 .loading{display:grid;place-items:center;padding:80px 16px;color:var(--muted)}
+/* Portada v3 */
+html{scroll-behavior:smooth}
+.topnav{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:18px;flex-wrap:wrap}
+.mainnav{display:flex;gap:28px}
+.mainnav a{color:var(--fg);text-decoration:none;font-weight:600;padding-block:6px;border-bottom:2px solid transparent}
+.mainnav a:hover,.mainnav a.on{color:var(--accent);border-bottom-color:var(--accent)}
+.btn.acct{gap:8px}.btn.acct svg{color:var(--accent)}
+.hero3{display:grid;grid-template-columns:1fr 1.05fr;gap:32px;align-items:center;padding-block:28px 32px}
+.h3-pill{display:inline-flex;align-items:center;gap:8px;background:var(--accent-soft);color:var(--accent);border-radius:99px;padding:7px 16px;font-size:13px;font-weight:800;letter-spacing:.1em;text-transform:uppercase}
+.hero3 h1{font-size:clamp(44px,6.4vw,82px);font-weight:800;letter-spacing:-.03em;line-height:1.02;margin:22px 0 34px}
+.hero3 h1 em{font-style:normal;color:var(--accent);background:linear-gradient(transparent 86%,var(--brand) 86%,var(--brand) 96%,transparent 96%);padding-bottom:2px}
+.hero3 .actions{display:flex;gap:14px;flex-wrap:wrap}
+.hero3 .btn{font-size:17px;padding:14px 24px;border-radius:14px}
+.btn.install{box-shadow:0 12px 24px -12px var(--go)}
+.btn.how{background:var(--surface)}
+.trust3{list-style:none;padding:0;margin:34px 0 0;display:flex;flex-wrap:wrap;gap:14px 26px}
+.trust3 li{display:flex;align-items:center;gap:10px;font-weight:600;max-width:15ch;line-height:1.25}
+.ti{flex:none;width:44px;height:44px;border-radius:50%;background:var(--accent-soft);color:var(--accent);display:grid;place-items:center}
+.h3-media{margin:0;position:relative}
+.h3-media img{display:block;width:100%;height:auto;border-radius:24px;-webkit-mask-image:linear-gradient(to right,transparent 0,#000 12%);mask-image:linear-gradient(to right,transparent 0,#000 12%)}
+.statbar{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:18px 22px;margin-bottom:48px;box-shadow:0 18px 40px -30px color-mix(in srgb,var(--fg) 40%,transparent)}
+.statbar div{display:flex;align-items:center;gap:12px;padding-inline:8px}
+.statbar div+div{border-left:1px solid var(--line)}
+.statbar b{font-size:15px;line-height:1.3}
+@media (max-width:980px){.mainnav{display:none}.hero3{grid-template-columns:1fr}.h3-media img{-webkit-mask-image:none;mask-image:none}.statbar{grid-template-columns:1fr}.statbar div+div{border-left:0}}
+@media (max-width:480px){.statbar{grid-template-columns:1fr}.hero3 .btn{width:100%}}
 /* modal */
 .modal{position:fixed;inset:0;background:color-mix(in srgb,var(--fg) 45%,transparent);display:grid;place-items:center;padding:16px;z-index:50}
 .modal .card{background:var(--surface);border-radius:14px;padding:20px;max-width:420px;width:100%;display:flex;flex-direction:column;gap:12px}
@@ -442,12 +468,25 @@ const T = {
  pl:{chooseLang:"Wybierz język",chooseLangSub:"Możesz go zmienić w każdej chwili w Ustawieniach.",login:"Zaloguj się",register:"Załóż konto",email:"E-mail",password:"Hasło",pass2:"Powtórz hasło",name:"Imię",remember:"Pozostań zalogowany na tym komputerze",welcome:"Witaj",welcomeSub:"Zaloguj się lub załóż darmowe konto.",errLogin:"Nieprawidłowy e-mail lub hasło. Sprawdź i spróbuj ponownie.",errExists:"Konto z tym e-mailem już istnieje. Kliknij „Zaloguj się”.",errShort:"Hasło musi mieć co najmniej 6 znaków.",errMatch:"Hasła nie są takie same.",errEmail:"Wpisz poprawny e-mail.",forgot:"Nie pamiętasz hasła?",resetSent:"Wysłaliśmy e-mail, aby ustawić nowe hasło. Sprawdź też folder spam.",needEmail:"Wpisz powyżej swój e-mail i kliknij ponownie.",netErr:"Brak połączenia. Sprawdź internet i spróbuj ponownie.",genErr:"Coś poszło nie tak. Spróbuj ponownie za kilka sekund.",newVersion:"Dostępna jest nowa wersja Lifezy.",update:"Aktualizuj",myGuides:"Moje przewodniki",help:"Pomoc",see:"Zobacz w środku",buy:"Kup",shop:"Sklep",settings:"Ustawienia",admin:"Administracja",logout:"Wyloguj",catalogSub:"Aktywne przewodniki otwierają się od razu, z zapisanymi danymi.",active:"Aktywny",locked:"Zablokowany",open:"Otwórz",activateTitle:"Aktywuj przewodnik",activateSub:"Wklej otrzymany kod.",code:"Kod aktywacyjny",activate:"Aktywuj",codeOk:"Gotowe! {p} jest odblokowany.",codeBad:"Ten kod nie istnieje. Sprawdź, czy jest dobrze skopiowany.",codeUsed:"Ten kod został już użyty i nie można go aktywować ponownie.",codeOwned:"Masz już ten przewodnik.",saved:"Zapisano",lang:"Język",backup:"Kopia zapasowa",backupSub:"Zapisz kopię danych (np. na Dysku Google) lub odzyskaj ją na innym komputerze.",export:"Utwórz kopię",import:"Importuj kopię",importOk:"Dane zaimportowane.",importBad:"Ten plik nie jest prawidłową kopią Lifezy.",copy:"Kopiuj",copied:"Skopiowano",months:["Sty","Lut","Mar","Kwi","Maj","Cze","Lip","Sie","Wrz","Paź","Lis","Gru"],income:"Przychody",expenses:"Wydatki",concept:"Pozycja",amount:"Kwota",block:"Kategoria",add:"Dodaj",spent:"Wydano",left:"Zostało",limit:"limit",summary:"Podsumowanie miesiąca",saving:"Oszczędności",overMsg:"Przekroczono limit w kategorii {b}.",nearMsg:"Zbliżasz się do limitu w kategorii {b}.",blocks:{casa:"Dom",comida:"Jedzenie",transporte:"Transport",ocio:"Rozrywka",fijos:"Koszty stałe",otros:"Inne"},soon:"Ten przewodnik jest w przygotowaniu. Tutaj pojawi się pełny szablon.",lockedMsg:"Ten przewodnik jest zablokowany. Aktywuj go kodem w „Moje przewodniki”."},
  sv:{chooseLang:"Välj språk",chooseLangSub:"Du kan ändra det när du vill under Inställningar.",login:"Logga in",register:"Skapa konto",email:"E-post",password:"Lösenord",pass2:"Upprepa lösenordet",name:"Namn",remember:"Håll mig inloggad på den här datorn",welcome:"Välkommen",welcomeSub:"Logga in eller skapa ett gratis konto.",errLogin:"Fel e-post eller lösenord. Kontrollera och försök igen.",errExists:"Det finns redan ett konto med den e-posten. Tryck på ”Logga in”.",errShort:"Lösenordet måste ha minst 6 tecken.",errMatch:"Lösenorden matchar inte.",errEmail:"Skriv en giltig e-postadress.",forgot:"Glömt lösenordet?",resetSent:"Vi har skickat ett mejl så att du kan välja ett nytt lösenord. Kolla även skräpposten.",needEmail:"Skriv din e-post ovan och tryck igen.",netErr:"Ingen anslutning. Kontrollera internet och försök igen.",genErr:"Något gick fel. Försök igen om några sekunder.",newVersion:"En ny version av Lifezy finns.",update:"Uppdatera",myGuides:"Mina guider",help:"Hjälp",see:"Titta inuti",buy:"Köp",shop:"Butik",settings:"Inställningar",admin:"Administration",logout:"Logga ut",catalogSub:"Aktiverade guider öppnas direkt, med dina sparade uppgifter.",active:"Aktiverad",locked:"Låst",open:"Öppna",activateTitle:"Aktivera en guide",activateSub:"Klistra in koden du fick.",code:"Aktiveringskod",activate:"Aktivera",codeOk:"Klart! {p} är upplåst.",codeBad:"Den koden finns inte. Kontrollera att den är rätt kopierad.",codeUsed:"Koden har redan använts och kan inte aktiveras igen.",codeOwned:"Du hade redan den här guiden.",saved:"Sparat",lang:"Språk",backup:"Säkerhetskopia",backupSub:"Spara en kopia av dina uppgifter (t.ex. i Google Drive) eller återställ den på en annan dator.",export:"Skapa kopia",import:"Importera kopia",importOk:"Uppgifterna har importerats.",importBad:"Filen är inte en giltig Lifezy-kopia.",copy:"Kopiera",copied:"Kopierat",months:["Jan","Feb","Mar","Apr","Maj","Jun","Jul","Aug","Sep","Okt","Nov","Dec"],income:"Inkomster",expenses:"Utgifter",concept:"Post",amount:"Belopp",block:"Kategori",add:"Lägg till",spent:"Spenderat",left:"Kvar",limit:"gräns",summary:"Månadens sammanfattning",saving:"Sparande",overMsg:"Du har gått över gränsen för {b}.",nearMsg:"Du närmar dig gränsen för {b}.",blocks:{casa:"Boende",comida:"Mat",transporte:"Transport",ocio:"Fritid",fijos:"Fasta kostnader",otros:"Övrigt"},soon:"Den här guiden förbereds. Hela mallen visas här snart.",lockedMsg:"Den här guiden är låst. Aktivera den med din kod under ”Mina guider”."}
 };
+const TX={
+ es:{codePh:'AHO-XXXX-XXXX o código de compra web',del:'Borrar',close:'Cerrar'},
+ ca:{codePh:'AHO-XXXX-XXXX o codi de compra web',del:'Esborrar',close:'Tancar'},
+ en:{codePh:'AHO-XXXX-XXXX or web purchase code',del:'Delete',close:'Close'},
+ pt:{codePh:'AHO-XXXX-XXXX ou código de compra web',del:'Apagar',close:'Fechar',exportNote:'Na app real é guardado um ficheiro. Neste protótipo, copia o texto:'},
+ fr:{codePh:'AHO-XXXX-XXXX ou code d’achat web',del:'Supprimer',close:'Fermer',exportNote:'Dans la vraie app, un fichier est enregistré. Dans ce prototype, copie le texte :'},
+ de:{codePh:'AHO-XXXX-XXXX oder Web-Kaufcode',del:'Löschen',close:'Schließen',exportNote:'In der echten App wird eine Datei gespeichert. In diesem Prototyp kopierst du den Text:'},
+ it:{codePh:'AHO-XXXX-XXXX o codice di acquisto web',del:'Elimina',close:'Chiudi',exportNote:'Nell’app reale viene salvato un file. In questo prototipo, copia il testo:'},
+ nl:{codePh:'AHO-XXXX-XXXX of webaankoopcode',del:'Verwijderen',close:'Sluiten',exportNote:'In de echte app wordt een bestand opgeslagen. Kopieer in dit prototype de tekst:'},
+ pl:{codePh:'AHO-XXXX-XXXX lub kod zakupu online',del:'Usuń',close:'Zamknij',exportNote:'W prawdziwej aplikacji zapisuje się plik. W tym prototypie skopiuj tekst:'},
+ sv:{codePh:'AHO-XXXX-XXXX eller webbköpkod',del:'Ta bort',close:'Stäng',exportNote:'I den riktiga appen sparas en fil. I den här prototypen kopierar du texten:'}};
+for(const l in TX)Object.assign(T[l],TX[l]);
 const BLOCKS = [
   {id:'casa',limit:30,color:'--c1'},{id:'comida',limit:15,color:'--c2'},{id:'transporte',limit:10,color:'--c3'},
   {id:'ocio',limit:10,color:'--c4'},{id:'fijos',limit:15,color:'--c5'},{id:'otros',limit:10,color:'--c6'}];
 
 
 const PRICE='9,99 €';
+const ICON={"wifi": "<svg viewBox=\"0 0 24 24\" width=\"22\" height=\"22\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M2 8.8a15 15 0 0 1 20 0\"/><path d=\"M5 12.5a10 10 0 0 1 14 0\"/><path d=\"M8.5 16a5 5 0 0 1 7 0\"/><circle cx=\"12\" cy=\"19.5\" r=\"1\"/><path d=\"M3 3l18 18\"/></svg>", "globe": "<svg viewBox=\"0 0 24 24\" width=\"22\" height=\"22\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"9.5\"/><path d=\"M2.5 12h19M12 2.5c2.8 3 2.8 16 0 19M12 2.5c-2.8 3-2.8 16 0 19\"/></svg>", "shield": "<svg viewBox=\"0 0 24 24\" width=\"22\" height=\"22\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M12 2.5l8 3v6c0 5-3.4 8.6-8 10-4.6-1.4-8-5-8-10v-6z\"/><path d=\"M8.5 12l2.5 2.5 4.5-5\"/></svg>", "doc": "<svg viewBox=\"0 0 24 24\" width=\"22\" height=\"22\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M14 2.5H6.5a2 2 0 0 0-2 2v15a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V8z\"/><path d=\"M14 2.5V8h5.5M8.5 13h7M8.5 17h7\"/></svg>", "card": "<svg viewBox=\"0 0 24 24\" width=\"22\" height=\"22\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" aria-hidden=\"true\"><rect x=\"2.5\" y=\"5\" width=\"19\" height=\"14\" rx=\"2.5\"/><path d=\"M2.5 10h19M6.5 15h4\"/></svg>", "laptop": "<svg viewBox=\"0 0 24 24\" width=\"22\" height=\"22\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><rect x=\"4\" y=\"4.5\" width=\"16\" height=\"11\" rx=\"1.5\"/><path d=\"M2 19.5h20\"/></svg>", "refresh": "<svg viewBox=\"0 0 24 24\" width=\"22\" height=\"22\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M20.5 11A8.5 8.5 0 0 0 5 6.5L3 9M3.5 13A8.5 8.5 0 0 0 19 17.5l2-2.5\"/><path d=\"M3 4v5h5M21 20v-5h-5\"/></svg>", "user": "<svg viewBox=\"0 0 24 24\" width=\"20\" height=\"20\" fill=\"currentColor\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"8\" r=\"4.2\"/><path d=\"M3.5 21c.8-4.3 4.2-6.8 8.5-6.8s7.7 2.5 8.5 6.8z\"/></svg>", "book": "<svg viewBox=\"0 0 24 24\" width=\"16\" height=\"16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M3 5.5c3-1.3 6-1.3 9 .5 3-1.8 6-1.8 9-.5v13c-3-1.3-6-1.3-9 .5-3-1.8-6-1.8-9-.5z\"/><path d=\"M12 6v13\"/></svg>", "play": "<svg viewBox=\"0 0 24 24\" width=\"20\" height=\"20\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"11\" fill=\"var(--accent)\"/><path d=\"M10 8l6 4-6 4z\" fill=\"#fff\"/></svg>", "down": "<svg viewBox=\"0 0 24 24\" width=\"20\" height=\"20\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M12 3.5v12M7 10.5l5 5 5-5M4 20h16\"/></svg>"};
 /* Pantallas de muestra para la galería (en la versión real: capturas reales subidas desde Administración) */
 function screens(id){
   const F='font-family="Figtree,sans-serif"', D='font-family="Bricolage Grotesque,sans-serif"';
@@ -475,7 +514,7 @@ function cover(id){const r=realPhotos(id);return r.length?r[0]:illo(id)}
 function gallery(id){const r=realPhotos(id);return r.length?r:[illo(id),...screens(id)]}
 let gal={id:null,i:0};
 function openGallery(id,i=0){gal={id,i};const m=document.getElementById('modal');const g=gallery(id);const p=PRODUCTS.find(x=>x.id===id);
-  m.innerHTML=`<div class="card gal"><div class="gal-top"><h3>${view==='app'?L_(p.name):(p.name[webLang()]??p.name.en)}</h3><button class="x" id="galClose" aria-label="Cerrar">✕</button></div>
+  m.innerHTML=`<div class="card gal"><div class="gal-top"><h3>${view==='app'?L_(p.name):(p.name[webLang()]??p.name.en)}</h3><button class="x" id="galClose" aria-label="${view==='app'?t('close'):W('close')}">✕</button></div>
     <div class="gal-stage">${g[gal.i]}</div>
     <div class="gal-nav"><button class="btn small" id="galPrev">←</button><span class="num">${gal.i+1} / ${g.length}</span><button class="btn small" id="galNext">→</button></div></div>`;m.hidden=false}
 
@@ -486,7 +525,7 @@ const store={get(k){try{return localStorage.getItem(k)}catch(e){return null}},se
 const DB={lang:store.get('lifezy-lang'),webLang:store.get('lifezy-weblang'),codes:[],fees:null,codesLoaded:false};
 let session=null, fbUser=null, profile=null, localData=null, authReady=false, view='web', appScreen='catalog', curMonth=new Date().getMonth(), lastSaved=null;
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const eur=n=>new Intl.NumberFormat(lang()==='en'?'en-IE':'es-ES',{style:'currency',currency:'EUR'}).format(n||0);
+const eur=n=>new Intl.NumberFormat(({es:'es-ES',ca:'ca-ES',en:'en-IE',pt:'pt-PT',fr:'fr-FR',de:'de-DE',it:'it-IT',nl:'nl-NL',pl:'pl-PL',sv:'sv-SE'})[lang()]||'es-ES',{style:'currency',currency:'EUR'}).format(n||0);
 const fmtDate=d=>d?new Date(d).toLocaleString('es-ES',{day:'2-digit',month:'2-digit',year:'numeric',hour:'2-digit',minute:'2-digit'}):'';
 function genCode(prefix){
   const A='ABCDEFGHJKMNPQRSTUVWXYZ23456789';let c;
@@ -516,23 +555,37 @@ async function loadAdminData(){
 /* ---------- Vista WEB ---------- */
 
 const WT={
- es:{enter:'Mi cuenta',eyebrow:'Para Windows y Mac · funciona sin Internet',h1:'GUÍAS',tag:'Haz tu vida más fácil',lead:'Descarga la app gratis, crea tu cuenta y activa tu guía. Al volver a abrirla, todo sigue como lo dejaste.',install:'Instalar la app',see:'Ver las guías',start:'Cómo empezar',
+ es:{installHow:"Chrome / Edge: pulsa el icono de instalar (⊕) a la derecha de la barra de direcciones, o menú ⋮ → «Instalar Lifezy».<br><br>Safari (Mac): menú Archivo → «Añadir al Dock».",buySoon:"La compra en la web estará disponible muy pronto.",home:"Inicio",tagA:"Haz tu vida",tagB:"fácil",stats:["{n} guías disponibles", "Pago único, sin cuotas", "Para Windows y Mac", "Actualizaciones gratis"],trust:["Funciona sin Internet", "10 idiomas", "Tus datos, en tu ordenador"],enter:'Mi cuenta',eyebrow:'Para Windows y Mac · funciona sin Internet',h1:'GUÍAS',tag:"Haz tu vida fácil",lead:'Descarga la app gratis, crea tu cuenta y activa tu guía. Al volver a abrirla, todo sigue como lo dejaste.',install:'Instalar la app',see:'Ver las guías',start:'Cómo empezar',
   s1:['Instala la app','Pulsa «Instalar la app». Se queda en tu escritorio como un programa más.'],s2:['Crea tu cuenta','Elige idioma, pon tu email y una contraseña. La app recuerda tu sesión.'],s3:['Activa tu guía','Pega tu código personal. Solo sirve una vez.'],
   guides:'Las guías',guidesSub:'Tus guías se guardan solas. Tú solo las rellenas.',photos:'fotos',inside:'Ver cómo es',buy:'Comprar',help:'Ayuda'},
- ca:{enter:'El meu compte',eyebrow:'Per a Windows i Mac · funciona sense Internet',h1:'GUIES',tag:'Fes-te la vida més fàcil',lead:'Descarrega l\'app gratis, crea el teu compte i activa la guia. Quan la tornis a obrir, tot seguirà com ho vas deixar.',install:'Instal·lar l\'app',see:'Veure les guies',start:'Com començar',
+ ca:{installHow:"Chrome / Edge: prem la icona d'instal·lar (⊕) a la dreta de la barra d'adreces, o menú ⋮ → «Instal·lar Lifezy».<br><br>Safari (Mac): menú Fitxer → «Afegeix al Dock».",buySoon:"La compra al web estarà disponible molt aviat.",home:"Inici",tagA:"Fes-te la vida",tagB:"fàcil",stats:["{n} guies disponibles", "Pagament únic, sense quotes", "Per a Windows i Mac", "Actualitzacions gratis"],trust:["Funciona sense Internet", "10 idiomes", "Les teves dades, al teu ordinador"],enter:'El meu compte',eyebrow:'Per a Windows i Mac · funciona sense Internet',h1:'GUIES',tag:"Fes-te la vida fàcil",lead:'Descarrega l\'app gratis, crea el teu compte i activa la guia. Quan la tornis a obrir, tot seguirà com ho vas deixar.',install:'Instal·lar l\'app',see:'Veure les guies',start:'Com començar',
   s1:['Instal·la l\'app','Prem «Instal·lar l\'app». Queda a l\'escriptori com un programa més.'],s2:['Crea el compte','Tria l\'idioma, posa el teu correu i una contrasenya. L\'app recorda la sessió.'],s3:['Activa la guia','Enganxa el teu codi personal. Només serveix una vegada.'],
   guides:'Les guies',guidesSub:'Les guies es desen soles. Tu només les omples.',photos:'fotos',inside:'Veure com és',buy:'Comprar',help:'Ajuda'},
- en:{enter:'My account',eyebrow:'For Windows and Mac · works offline',h1:'GUIDES',tag:'Make your life easier',lead:'Download the free app, create your account and activate your guide. Next time you open it, everything is where you left it.',install:'Install the app',see:'See the guides',start:'How to start',
+ en:{installHow:"Chrome / Edge: click the install icon (⊕) on the right of the address bar, or menu ⋮ → “Install Lifezy”.<br><br>Safari (Mac): File menu → “Add to Dock”.",buySoon:"Buying on the website will be available very soon.",home:"Home",tagA:"Make your life",tagB:"easy",stats:["{n} guides available", "One-time payment, no subscription", "For Windows and Mac", "Free updates"],trust:["Works offline", "10 languages", "Your data stays on your computer"],enter:'My account',eyebrow:'For Windows and Mac · works offline',h1:'GUIDES',tag:"Make your life easy",lead:'Download the free app, create your account and activate your guide. Next time you open it, everything is where you left it.',install:'Install the app',see:'See the guides',start:'How to start',
   s1:['Install the app','Click "Install the app". It stays on your desktop like any other program.'],s2:['Create your account','Choose your language, enter your email and a password. The app keeps you signed in.'],s3:['Activate your guide','Paste your personal code. It only works once.'],
   guides:'The guides',guidesSub:'Your guides save themselves. You just fill them in.',photos:'photos',inside:'See inside',buy:'Buy',help:'Help'},
- pt:{enter:"A minha conta",eyebrow:"Para Windows e Mac · funciona sem Internet",h1:"GUIAS",tag:"Torna a tua vida mais fácil",lead:"Descarrega a app grátis, cria a tua conta e ativa o teu guia. Quando voltares a abri-la, tudo estará como deixaste.",install:"Instalar a app",see:"Ver os guias",start:"Como começar",s1:["Instala a app","Carrega em «Instalar a app». Fica no teu ambiente de trabalho como qualquer programa."],s2:["Cria a tua conta","Escolhe o idioma, o teu email e uma palavra-passe. A app lembra-se da sessão."],s3:["Ativa o teu guia","Cola o teu código pessoal. Só funciona uma vez."],guides:"Os guias",guidesSub:"Os teus guias guardam-se sozinhos. Tu só os preenches.",photos:"fotos",inside:"Ver por dentro",buy:"Comprar",help:"Ajuda"},
- fr:{enter:"Mon compte",eyebrow:"Pour Windows et Mac · fonctionne sans Internet",h1:"GUIDES",tag:"Rends ta vie plus facile",lead:"Télécharge l'app gratuite, crée ton compte et active ton guide. Quand tu la rouvres, tout est comme tu l'as laissé.",install:"Installer l'app",see:"Voir les guides",start:"Pour commencer",s1:["Installe l'app","Clique sur « Installer l'app ». Elle reste sur ton bureau comme un programme."],s2:["Crée ton compte","Choisis ta langue, ton e-mail et un mot de passe. L'app garde ta session."],s3:["Active ton guide","Colle ton code personnel. Il ne fonctionne qu'une fois."],guides:"Les guides",guidesSub:"Tes guides s'enregistrent tout seuls. Tu n'as qu'à les remplir.",photos:"photos",inside:"Voir l'intérieur",buy:"Acheter",help:"Aide"},
- de:{enter:"Mein Konto",eyebrow:"Für Windows und Mac · funktioniert offline",h1:"GUIDES",tag:"Mach dein Leben leichter",lead:"Lade die kostenlose App herunter, erstelle dein Konto und aktiviere deinen Guide. Beim nächsten Öffnen ist alles so, wie du es verlassen hast.",install:"App installieren",see:"Guides ansehen",start:"So startest du",s1:["Installiere die App","Klicke auf „App installieren“. Sie bleibt wie ein Programm auf deinem Desktop."],s2:["Erstelle dein Konto","Wähle deine Sprache, E-Mail und ein Passwort. Die App merkt sich deine Anmeldung."],s3:["Aktiviere deinen Guide","Füge deinen persönlichen Code ein. Er funktioniert nur einmal."],guides:"Die Guides",guidesSub:"Deine Guides speichern sich selbst. Du füllst sie nur aus.",photos:"Fotos",inside:"Einblick",buy:"Kaufen",help:"Hilfe"},
- it:{enter:"Il mio account",eyebrow:"Per Windows e Mac · funziona senza Internet",h1:"GUIDE",tag:"Rendi la tua vita più facile",lead:"Scarica l'app gratis, crea il tuo account e attiva la tua guida. Quando la riapri, tutto è come l'hai lasciato.",install:"Installa l'app",see:"Vedi le guide",start:"Come iniziare",s1:["Installa l'app","Premi «Installa l'app». Resta sul desktop come un normale programma."],s2:["Crea il tuo account","Scegli lingua, email e password. L'app ricorda l'accesso."],s3:["Attiva la tua guida","Incolla il tuo codice personale. Funziona una sola volta."],guides:"Le guide",guidesSub:"Le tue guide si salvano da sole. Tu devi solo compilarle.",photos:"foto",inside:"Guarda dentro",buy:"Acquista",help:"Aiuto"},
- nl:{enter:"Mijn account",eyebrow:"Voor Windows en Mac · werkt offline",h1:"GIDSEN",tag:"Maak je leven makkelijker",lead:"Download de gratis app, maak je account aan en activeer je gids. Als je hem weer opent, staat alles nog zoals je het liet.",install:"App installeren",see:"Bekijk de gidsen",start:"Zo begin je",s1:["Installeer de app","Klik op „App installeren”. Hij staat op je bureaublad als elk ander programma."],s2:["Maak je account","Kies je taal, e-mail en een wachtwoord. De app onthoudt je login."],s3:["Activeer je gids","Plak je persoonlijke code. Die werkt maar één keer."],guides:"De gidsen",guidesSub:"Je gidsen slaan zichzelf op. Jij vult ze alleen in.",photos:"foto's",inside:"Bekijk binnenkant",buy:"Kopen",help:"Hulp"},
- pl:{enter:"Moje konto",eyebrow:"Dla Windows i Mac · działa bez internetu",h1:"PRZEWODNIKI",tag:"Ułatw sobie życie",lead:"Pobierz darmową aplikację, załóż konto i aktywuj przewodnik. Gdy ją ponownie otworzysz, wszystko będzie tak, jak zostawiłeś.",install:"Zainstaluj aplikację",see:"Zobacz przewodniki",start:"Jak zacząć",s1:["Zainstaluj aplikację","Kliknij „Zainstaluj aplikację”. Zostanie na pulpicie jak zwykły program."],s2:["Załóż konto","Wybierz język, e-mail i hasło. Aplikacja zapamięta logowanie."],s3:["Aktywuj przewodnik","Wklej swój osobisty kod. Działa tylko raz."],guides:"Przewodniki",guidesSub:"Twoje przewodniki zapisują się same. Ty tylko je wypełniasz.",photos:"zdjęć",inside:"Zobacz w środku",buy:"Kup",help:"Pomoc"},
- sv:{enter:"Mitt konto",eyebrow:"För Windows och Mac · fungerar offline",h1:"GUIDER",tag:"Gör livet enklare",lead:"Ladda ner den gratis appen, skapa ditt konto och aktivera din guide. När du öppnar den igen är allt som du lämnade det.",install:"Installera appen",see:"Se guiderna",start:"Så kommer du igång",s1:["Installera appen","Klicka på ”Installera appen”. Den ligger på skrivbordet som ett vanligt program."],s2:["Skapa ditt konto","Välj språk, e-post och ett lösenord. Appen kommer ihåg din inloggning."],s3:["Aktivera din guide","Klistra in din personliga kod. Den fungerar bara en gång."],guides:"Guiderna",guidesSub:"Dina guider sparas automatiskt. Du fyller bara i dem.",photos:"foton",inside:"Titta inuti",buy:"Köp",help:"Hjälp"}
+ pt:{installHow:"Chrome / Edge: carrega no ícone de instalar (⊕) à direita da barra de endereços, ou menu ⋮ → «Instalar Lifezy».<br><br>Safari (Mac): menu Ficheiro → «Adicionar à Dock».",buySoon:"A compra no site estará disponível muito em breve.",home:"Início",tagA:"Torna a tua vida",tagB:"fácil",stats:["{n} guias disponíveis", "Pagamento único, sem mensalidades", "Para Windows e Mac", "Atualizações grátis"],trust:["Funciona sem Internet", "10 idiomas", "Os teus dados, no teu computador"],enter:"A minha conta",eyebrow:"Para Windows e Mac · funciona sem Internet",h1:"GUIAS",tag:"Torna a tua vida fácil",lead:"Descarrega a app grátis, cria a tua conta e ativa o teu guia. Quando voltares a abri-la, tudo estará como deixaste.",install:"Instalar a app",see:"Ver os guias",start:"Como começar",s1:["Instala a app","Carrega em «Instalar a app». Fica no teu ambiente de trabalho como qualquer programa."],s2:["Cria a tua conta","Escolhe o idioma, o teu email e uma palavra-passe. A app lembra-se da sessão."],s3:["Ativa o teu guia","Cola o teu código pessoal. Só funciona uma vez."],guides:"Os guias",guidesSub:"Os teus guias guardam-se sozinhos. Tu só os preenches.",photos:"fotos",inside:"Ver por dentro",buy:"Comprar",help:"Ajuda"},
+ fr:{installHow:"Chrome / Edge : clique sur l'icône d'installation (⊕) à droite de la barre d'adresse, ou menu ⋮ → « Installer Lifezy ».<br><br>Safari (Mac) : menu Fichier → « Ajouter au Dock ».",buySoon:"L'achat sur le site sera bientôt disponible.",home:"Accueil",tagA:"Rends ta vie",tagB:"facile",stats:["{n} guides disponibles", "Paiement unique, sans abonnement", "Pour Windows et Mac", "Mises à jour gratuites"],trust:["Fonctionne hors ligne", "10 langues", "Tes données restent sur ton ordinateur"],enter:"Mon compte",eyebrow:"Pour Windows et Mac · fonctionne sans Internet",h1:"GUIDES",tag:"Rends ta vie facile",lead:"Télécharge l'app gratuite, crée ton compte et active ton guide. Quand tu la rouvres, tout est comme tu l'as laissé.",install:"Installer l'app",see:"Voir les guides",start:"Pour commencer",s1:["Installe l'app","Clique sur « Installer l'app ». Elle reste sur ton bureau comme un programme."],s2:["Crée ton compte","Choisis ta langue, ton e-mail et un mot de passe. L'app garde ta session."],s3:["Active ton guide","Colle ton code personnel. Il ne fonctionne qu'une fois."],guides:"Les guides",guidesSub:"Tes guides s'enregistrent tout seuls. Tu n'as qu'à les remplir.",photos:"photos",inside:"Voir l'intérieur",buy:"Acheter",help:"Aide"},
+ de:{installHow:"Chrome / Edge: Klicke auf das Installationssymbol (⊕) rechts in der Adressleiste oder Menü ⋮ → „Lifezy installieren“.<br><br>Safari (Mac): Menü Ablage → „Zum Dock hinzufügen“.",buySoon:"Der Kauf auf der Website ist bald verfügbar.",home:"Start",tagA:"Mach dein Leben",tagB:"leicht",stats:["{n} Guides verfügbar", "Einmalzahlung, kein Abo", "Für Windows und Mac", "Kostenlose Updates"],trust:["Funktioniert offline", "10 Sprachen", "Deine Daten bleiben auf deinem Computer"],enter:"Mein Konto",eyebrow:"Für Windows und Mac · funktioniert offline",h1:"GUIDES",tag:"Mach dein Leben leicht",lead:"Lade die kostenlose App herunter, erstelle dein Konto und aktiviere deinen Guide. Beim nächsten Öffnen ist alles so, wie du es verlassen hast.",install:"App installieren",see:"Guides ansehen",start:"So startest du",s1:["Installiere die App","Klicke auf „App installieren“. Sie bleibt wie ein Programm auf deinem Desktop."],s2:["Erstelle dein Konto","Wähle deine Sprache, E-Mail und ein Passwort. Die App merkt sich deine Anmeldung."],s3:["Aktiviere deinen Guide","Füge deinen persönlichen Code ein. Er funktioniert nur einmal."],guides:"Die Guides",guidesSub:"Deine Guides speichern sich selbst. Du füllst sie nur aus.",photos:"Fotos",inside:"Einblick",buy:"Kaufen",help:"Hilfe"},
+ it:{installHow:"Chrome / Edge: clicca l'icona di installazione (⊕) a destra della barra degli indirizzi, o menu ⋮ → «Installa Lifezy».<br><br>Safari (Mac): menu File → «Aggiungi al Dock».",buySoon:"L'acquisto sul sito sarà disponibile a breve.",home:"Home",tagA:"Rendi la tua vita",tagB:"facile",stats:["{n} guide disponibili", "Pagamento unico, senza abbonamento", "Per Windows e Mac", "Aggiornamenti gratuiti"],trust:["Funziona offline", "10 lingue", "I tuoi dati restano sul tuo computer"],enter:"Il mio account",eyebrow:"Per Windows e Mac · funziona senza Internet",h1:"GUIDE",tag:"Rendi la tua vita facile",lead:"Scarica l'app gratis, crea il tuo account e attiva la tua guida. Quando la riapri, tutto è come l'hai lasciato.",install:"Installa l'app",see:"Vedi le guide",start:"Come iniziare",s1:["Installa l'app","Premi «Installa l'app». Resta sul desktop come un normale programma."],s2:["Crea il tuo account","Scegli lingua, email e password. L'app ricorda l'accesso."],s3:["Attiva la tua guida","Incolla il tuo codice personale. Funziona una sola volta."],guides:"Le guide",guidesSub:"Le tue guide si salvano da sole. Tu devi solo compilarle.",photos:"foto",inside:"Guarda dentro",buy:"Acquista",help:"Aiuto"},
+ nl:{installHow:"Chrome / Edge: klik op het installatie-icoon (⊕) rechts in de adresbalk, of menu ⋮ → „Lifezy installeren”.<br><br>Safari (Mac): menu Archief → „Voeg toe aan Dock”.",buySoon:"Kopen op de website is binnenkort mogelijk.",home:"Home",tagA:"Maak je leven",tagB:"makkelijk",stats:["{n} gidsen beschikbaar", "Eenmalige betaling, geen abonnement", "Voor Windows en Mac", "Gratis updates"],trust:["Werkt offline", "10 talen", "Je gegevens blijven op je computer"],enter:"Mijn account",eyebrow:"Voor Windows en Mac · werkt offline",h1:"GIDSEN",tag:"Maak je leven makkelijk",lead:"Download de gratis app, maak je account aan en activeer je gids. Als je hem weer opent, staat alles nog zoals je het liet.",install:"App installeren",see:"Bekijk de gidsen",start:"Zo begin je",s1:["Installeer de app","Klik op „App installeren”. Hij staat op je bureaublad als elk ander programma."],s2:["Maak je account","Kies je taal, e-mail en een wachtwoord. De app onthoudt je login."],s3:["Activeer je gids","Plak je persoonlijke code. Die werkt maar één keer."],guides:"De gidsen",guidesSub:"Je gidsen slaan zichzelf op. Jij vult ze alleen in.",photos:"foto's",inside:"Bekijk binnenkant",buy:"Kopen",help:"Hulp"},
+ pl:{installHow:"Chrome / Edge: kliknij ikonę instalacji (⊕) po prawej stronie paska adresu lub menu ⋮ → „Zainstaluj Lifezy”.<br><br>Safari (Mac): menu Plik → „Dodaj do Docka”.",buySoon:"Zakup na stronie będzie dostępny już wkrótce.",home:"Start",tagA:"Ułatw sobie",tagB:"życie",stats:["{n} przewodniki dostępne", "Jednorazowa płatność, bez abonamentu", "Dla Windows i Mac", "Darmowe aktualizacje"],trust:["Działa offline", "10 języków", "Twoje dane zostają na komputerze"],enter:"Moje konto",eyebrow:"Dla Windows i Mac · działa bez internetu",h1:"PRZEWODNIKI",tag:"Ułatw sobie życie",lead:"Pobierz darmową aplikację, załóż konto i aktywuj przewodnik. Gdy ją ponownie otworzysz, wszystko będzie tak, jak zostawiłeś.",install:"Zainstaluj aplikację",see:"Zobacz przewodniki",start:"Jak zacząć",s1:["Zainstaluj aplikację","Kliknij „Zainstaluj aplikację”. Zostanie na pulpicie jak zwykły program."],s2:["Załóż konto","Wybierz język, e-mail i hasło. Aplikacja zapamięta logowanie."],s3:["Aktywuj przewodnik","Wklej swój osobisty kod. Działa tylko raz."],guides:"Przewodniki",guidesSub:"Twoje przewodniki zapisują się same. Ty tylko je wypełniasz.",photos:"zdjęć",inside:"Zobacz w środku",buy:"Kup",help:"Pomoc"},
+ sv:{installHow:"Chrome / Edge: klicka på installationsikonen (⊕) till höger i adressfältet, eller meny ⋮ → ”Installera Lifezy”.<br><br>Safari (Mac): Arkiv-menyn → ”Lägg till i Dock”.",buySoon:"Köp på webbplatsen blir tillgängligt mycket snart.",home:"Hem",tagA:"Gör livet",tagB:"enkelt",stats:["{n} guider tillgängliga", "Engångsbetalning, ingen prenumeration", "För Windows och Mac", "Gratis uppdateringar"],trust:["Fungerar offline", "10 språk", "Dina uppgifter stannar på din dator"],enter:"Mitt konto",eyebrow:"För Windows och Mac · fungerar offline",h1:"GUIDER",tag:"Gör livet enkelt",lead:"Ladda ner den gratis appen, skapa ditt konto och aktivera din guide. När du öppnar den igen är allt som du lämnade det.",install:"Installera appen",see:"Se guiderna",start:"Så kommer du igång",s1:["Installera appen","Klicka på ”Installera appen”. Den ligger på skrivbordet som ett vanligt program."],s2:["Skapa ditt konto","Välj språk, e-post och ett lösenord. Appen kommer ihåg din inloggning."],s3:["Aktivera din guide","Klistra in din personliga kod. Den fungerar bara en gång."],guides:"Guiderna",guidesSub:"Dina guider sparas automatiskt. Du fyller bara i dem.",photos:"foton",inside:"Titta inuti",buy:"Köp",help:"Hjälp"}
 };
+/* Textos añadidos para completar los 10 idiomas */
+const WX={
+ es:{faqSearch:'Busca una pregunta…',faqMore:'¿Sigues con dudas? Escribe a',close:'Cerrar'},
+ ca:{faqSearch:'Cerca una pregunta…',faqMore:'Encara necessites ajuda? Escriu a',close:'Tancar'},
+ en:{faqSearch:'Search a question…',faqMore:'Still need help? Write to',close:'Close'},
+ pt:{faqSearch:'Procura uma pergunta…',faqMore:'Ainda tens dúvidas? Escreve para',close:'Fechar'},
+ fr:{faqSearch:'Cherche une question…',faqMore:'Encore une question ? Écris à',close:'Fermer'},
+ de:{faqSearch:'Frage suchen…',faqMore:'Noch Fragen? Schreib an',close:'Schließen'},
+ it:{faqSearch:'Cerca una domanda…',faqMore:'Hai ancora dubbi? Scrivi a',close:'Chiudi'},
+ nl:{faqSearch:'Zoek een vraag…',faqMore:'Nog vragen? Mail naar',close:'Sluiten'},
+ pl:{faqSearch:'Szukaj pytania…',faqMore:'Masz pytania? Napisz na',close:'Zamknij'},
+ sv:{faqSearch:'Sök en fråga…',faqMore:'Fler frågor? Skriv till',close:'Stäng'}};
+for(const l in WX)Object.assign(WT[l],WX[l]);
+
 function webLang(){return DB.webLang||(navigator.language||'es').slice(0,2).replace(/^(?!(es|ca|en|pt|fr|de|it|nl|pl|sv)$).*/,'en')}
 function W(k){return (WT[webLang()]||WT.en)[k]??WT.en[k]}
 function langPicker(cur,id){
@@ -550,24 +603,24 @@ function brandMark(sz){return `<svg class="sticker" width="${sz}" height="${sz}"
 function renderWeb(){
   const wl=webLang(),N=p=>p.name[wl]??p.name.en,S=(p,f)=>p[f][wl]??p[f].en;
   document.getElementById('web').innerHTML=`
-  <div class="web-top">
+  <header class="topnav">
     <a class="brand" href="#" aria-label="Lifezy">${brandMark(46)}<span class="word">Life<span>zy</span></span></a>
-    <div class="top-r">${langPicker(wl,'web')}<button class="btn" data-go="app">${W('enter')}</button></div>
-  </div>
-  ${WT[wl]?'':`<div class="msg info" style="margin-bottom:12px">${flag(wl)} ${LANGS[wl]}: traducción en preparación. Se muestra en inglés.</div>`}
-  <section class="hero">
-    <div>
-      <div class="eyebrow">${W('eyebrow')}</div>
-      <h1>${W('h1')}</h1>
-      <p class="tagline">${W('tag')}</p>
-      <p>${W('lead')}</p>
+    <nav class="mainnav"><a href="#" class="on">${W('home')}</a><a href="#guias">${W('guides')}</a><a href="#como">${W('start')}</a><a href="#ayuda">${W('help')}</a></nav>
+    <div class="top-r">${langPicker(wl,'web')}<button class="btn acct" data-go="app">${ICON.user}${W('enter')}</button></div>
+  </header>
+  <section class="hero3">
+    <div class="h3-copy">
+      <span class="h3-pill">${ICON.book}${W('h1')}</span>
+      <h1>${W('tagA')} <em>${W('tagB')}</em></h1>
       <div class="actions">
-        <button class="btn install" data-install="1">⬇ ${W('install')}</button>
-        <a class="btn" href="#guias">${W('see')}</a>
+        <button class="btn install" data-install="1">${ICON.down}${W('install')}</button>
+        <a class="btn how" href="#como">${ICON.play}${W('start')}</a>
       </div>
+      <ul class="trust3">${['wifi','globe','shield'].map((ic,i)=>`<li><span class="ti">${ICON[ic]}</span>${W('trust')[i]}</li>`).join('')}</ul>
     </div>
-    <div class="mock" aria-hidden="true">${cover('aho')}</div>
+    <figure class="h3-media"><img src="portada.jpg" alt="" width="1400" height="933"></figure>
   </section>
+  <section class="statbar">${['card','laptop','refresh'].map((ic,i)=>`<div><span class="ti">${ICON[ic]}</span><b>${W('stats')[i+1]}</b></div>`).join('')}</section>
   <section class="start" id="como">
     <h2 class="section-title">${W('start')}</h2>
     <div class="steps">${['s1','s2','s3'].map((k,i)=>`<div class="step"><b>${i+1}</b><div><h3>${W(k)[0]}</h3><p>${W(k)[1]}</p></div></div>`).join('')}</div>
@@ -663,7 +716,7 @@ function screenCatalog(){
     ${own?`<button class="btn primary small" data-screen="${p.id}">${t('open')}</button>`:`<div class="buy"><button class="btn small" data-gallery="${p.id}">${t('see')}</button>${showShop()?`<button class="btn primary small" data-shop="1">${t('buy')} · ${PRICE}</button>`:''}</div>`}
   </article>`}).join('')}</div>
   <form class="activate" id="actForm" novalidate>
-    <div class="field"><label for="act-code">${t('activateTitle')} · ${t('activateSub')}</label><input id="act-code" type="text" placeholder="AHO-XXXX-XXXX o código de compra web" autocomplete="off"></div>
+    <div class="field"><label for="act-code">${t('activateTitle')} · ${t('activateSub')}</label><input id="act-code" type="text" placeholder="${t('codePh')}" autocomplete="off"></div>
     <button class="btn primary" type="submit">${t('activate')}</button>
     <div id="actMsg" style="width:100%"></div>
   </form>`;
@@ -685,12 +738,12 @@ function screenAho(){
   <div class="aho">
     <div class="stack">
       <div class="box"><h3>${L.income}<span class="num">${eur(inc)}</span></h3>
-        <div class="tbl-wrap"><table><tbody>${m.inc.map((x,i)=>`<tr><td>${esc(x.c)}</td><td class="r num">${eur(x.v)}</td><td class="r"><button class="x" data-del-inc="${i}" aria-label="Borrar">✕</button></td></tr>`).join('')}</tbody></table></div>
+        <div class="tbl-wrap"><table><tbody>${m.inc.map((x,i)=>`<tr><td>${esc(x.c)}</td><td class="r num">${eur(x.v)}</td><td class="r"><button class="x" data-del-inc="${i}" aria-label="${t('del')}">✕</button></td></tr>`).join('')}</tbody></table></div>
         <form class="addrow inc" id="incForm"><input id="inc-c" type="text" placeholder="${L.concept}"><input id="inc-v" type="number" step="0.01" min="0" placeholder="${L.amount}"><button class="btn small" type="submit">${L.add}</button></form>
       </div>
       <div class="box"><h3>${L.expenses}<span class="num">${eur(spent)}</span></h3>
         <div class="tbl-wrap"><table><thead><tr><th>${L.block}</th><th>${L.concept}</th><th class="r">${L.amount}</th><th></th></tr></thead>
-        <tbody>${m.exp.map((x,i)=>{const b=BLOCKS.find(b=>b.id===x.b);return `<tr><td><span class="sw" style="background:var(${b.color})"></span>${L.blocks[x.b]}</td><td>${esc(x.c)}</td><td class="r num">${eur(x.v)}</td><td class="r"><button class="x" data-del-exp="${i}" aria-label="Borrar">✕</button></td></tr>`}).join('')}</tbody></table></div>
+        <tbody>${m.exp.map((x,i)=>{const b=BLOCKS.find(b=>b.id===x.b);return `<tr><td><span class="sw" style="background:var(${b.color})"></span>${L.blocks[x.b]}</td><td>${esc(x.c)}</td><td class="r num">${eur(x.v)}</td><td class="r"><button class="x" data-del-exp="${i}" aria-label="${t('del')}">✕</button></td></tr>`}).join('')}</tbody></table></div>
         <form class="addrow" id="expForm"><select id="exp-b">${BLOCKS.map(b=>`<option value="${b.id}">${L.blocks[b.id]}</option>`).join('')}</select><input id="exp-c" type="text" placeholder="${L.concept}"><input id="exp-v" type="number" step="0.01" min="0" placeholder="${L.amount}"><button class="btn small" type="submit">${L.add}</button></form>
       </div>
     </div>
@@ -843,13 +896,22 @@ function screenAdmin(){
     <tbody>${rows.map(c=>`<tr><td><code class="c">${c.code}</code></td><td>${chOf(c)==='web'?'<span class="pill ok">Web</span>':'<span class="pill muted">Etsy</span>'}</td><td>${pname(c.prod,'es')}</td><td>${pill(c.status)}</td><td class="num">${esc(c.order)}</td><td>${esc(c.userEmail||'')}</td><td class="num">${fmtDate(c.date)}</td></tr>`).join('')}</tbody></table></div>
   </div>`;
 }
+const EMSG={
+ es:['¡Gracias por tu compra! 🎉','Tu código de activación de {n} es: {c}','Descarga la app desde el enlace del PDF.','Crea tu cuenta.','Pulsa «Activar» y pega el código.','El código es personal y solo se puede usar una vez.'],
+ ca:['Gràcies per la teva compra! 🎉','El teu codi d\'activació de {n} és: {c}','Descarrega l\'app des de l\'enllaç del PDF.','Crea el teu compte.','Prem «Activar» i enganxa el codi.','El codi és personal i només es pot fer servir una vegada.'],
+ en:['Thank you for your purchase! 🎉','Your {n} activation code is: {c}','Download the app from the link in the PDF.','Create your account.','Tap "Activate" and paste the code.','The code is personal and can only be used once.'],
+ pt:['Obrigado pela tua compra! 🎉','O teu código de ativação de {n} é: {c}','Descarrega a app a partir do link do PDF.','Cria a tua conta.','Carrega em «Ativar» e cola o código.','O código é pessoal e só pode ser usado uma vez.'],
+ fr:['Merci pour ton achat ! 🎉','Ton code d\'activation de {n} est : {c}','Télécharge l\'app depuis le lien du PDF.','Crée ton compte.','Clique sur « Activer » et colle le code.','Le code est personnel et ne peut être utilisé qu\'une seule fois.'],
+ de:['Danke für deinen Kauf! 🎉','Dein Aktivierungscode für {n} lautet: {c}','Lade die App über den Link im PDF herunter.','Erstelle dein Konto.','Klicke auf „Aktivieren“ und füge den Code ein.','Der Code ist persönlich und kann nur einmal verwendet werden.'],
+ it:['Grazie per il tuo acquisto! 🎉','Il tuo codice di attivazione di {n} è: {c}','Scarica l\'app dal link nel PDF.','Crea il tuo account.','Premi «Attiva» e incolla il codice.','Il codice è personale e si può usare una sola volta.'],
+ nl:['Bedankt voor je aankoop! 🎉','Je activeringscode voor {n} is: {c}','Download de app via de link in de pdf.','Maak je account aan.','Klik op „Activeren” en plak de code.','De code is persoonlijk en kan maar één keer worden gebruikt.'],
+ pl:['Dziękujemy za zakup! 🎉','Twój kod aktywacyjny do {n}: {c}','Pobierz aplikację z linku w pliku PDF.','Załóż konto.','Kliknij „Aktywuj” i wklej kod.','Kod jest osobisty i można go użyć tylko raz.'],
+ sv:['Tack för ditt köp! 🎉','Din aktiveringskod för {n} är: {c}','Ladda ner appen via länken i PDF:en.','Skapa ditt konto.','Klicka på ”Aktivera” och klistra in koden.','Koden är personlig och kan bara användas en gång.']};
 function etsyMsg(code,prod,l){
-  const n=pname(prod,l);
-  if(l==='ca')return `Gràcies per la teva compra! 🎉\nEl teu codi d'activació de ${n} és: ${code}\n\n1. Descarrega l'app des de l'enllaç del PDF.\n2. Crea el teu compte.\n3. Prem «Activar» i enganxa el codi.\n\nEl codi és personal i només es pot fer servir una vegada.`;
-  if(l==='en')return `Thank you for your purchase! 🎉\nYour ${n} activation code is: ${code}\n\n1. Download the app from the link in the PDF.\n2. Create your account.\n3. Tap "Activate" and paste the code.\n\nThe code is personal and can only be used once.`;
-  if(l!=='es')return etsyMsg(code,prod,'en').replace(pname(prod,'en'),n);
-  return `¡Gracias por tu compra! 🎉\nTu código de activación de ${n} es: ${code}\n\n1. Descarga la app desde el enlace del PDF.\n2. Crea tu cuenta.\n3. Pulsa «Activar» y pega el código.\n\nEl código es personal y solo se puede usar una vez.`;
+  const n=pname(prod,l),m=EMSG[l]||EMSG.es;
+  return `${m[0]}\n${m[1].replace('{n}',n).replace('{c}',code)}\n\n1. ${m[2]}\n2. ${m[3]}\n3. ${m[4]}\n\n${m[5]}`;
 }
+
 function assignedHTML(a){
   if(a.err)return `<div class="msg err" style="margin-top:10px">${a.err}</div>`;
   return `<div class="msg ok" style="margin-top:10px">Código <code class="c">${a.code}</code> asignado al pedido ${esc(a.order)}. Pégalo en Etsy → Pedidos → «Enviar mensaje al comprador».</div>
@@ -861,6 +923,7 @@ function assignedHTML(a){
 const standalone=()=>matchMedia('(display-mode: standalone)').matches||navigator.standalone===true;
 function computeView(){const h=location.hash;view=(h==='#app'||(standalone()&&(h===''||h==='#')))?'app':'web'}
 function render(){
+  try{document.documentElement.lang=(location.hash==='#app'?lang():webLang())}catch(e){}
   computeView();
   document.getElementById('web').hidden=view!=='web';document.getElementById('app').hidden=view!=='app';
   document.documentElement.lang=view==='web'?webLang():lang();
@@ -887,7 +950,7 @@ window.addEventListener('appinstalled',()=>{deferredPrompt=null});
 async function doInstall(){
   if(standalone()){location.hash='#app';return}
   if(deferredPrompt){deferredPrompt.prompt();const r=await deferredPrompt.userChoice;deferredPrompt=null;if(r.outcome==='accepted')return;}
-  infoModal(`<h3>${W('install')}</h3><p style="margin:0;color:var(--muted)">Chrome / Edge: pulsa el icono de instalar (⊕) a la derecha de la barra de direcciones, o menú ⋮ → «Instalar Lifezy».<br><br>Safari (Mac): menú Archivo → «Añadir al Dock».</p>`);
+  infoModal(`<h3>${W('install')}</h3><p style="margin:0;color:var(--muted)">${W('installHow')}</p>`);
 }
 
 /* Actualizaciones (service worker) */
@@ -916,7 +979,7 @@ document.addEventListener('click',async e=>{
   if(b.dataset.gallery){openGallery(b.dataset.gallery);return}
   if(b.id==='galClose'){document.getElementById('modal').hidden=true;return}
   if(b.id==='galPrev'||b.id==='galNext'){const n=gallery(gal.id).length;openGallery(gal.id,(gal.i+(b.id==='galNext'?1:-1)+n)%n);return}
-  if(b.dataset.buy){const p=PRODUCTS.find(x=>x.id===b.dataset.buy);infoModal(`<h3>${W('buy')} · ${p.name[webLang()]??p.name.en}</h3><p style="margin:0;color:var(--muted)">La compra en la web estará disponible muy pronto.</p>`);return}
+  if(b.dataset.buy){const p=PRODUCTS.find(x=>x.id===b.dataset.buy);infoModal(`<h3>${W('buy')} · ${p.name[webLang()]??p.name.en}</h3><p style="margin:0;color:var(--muted)">${W('buySoon')}</p>`);return}
   if(b.dataset.shop){location.hash='#guias';return}
   if(b.dataset.go==='app'){location.hash='#app';return}
   if(b.dataset.lang){DB.lang=b.dataset.lang;store.set('lifezy-lang',DB.lang);render();return}

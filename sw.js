@@ -1,7 +1,7 @@
 // Lifezy · service worker: funciona sin Internet y avisa de versiones nuevas.
 // Cambia VERSION cada vez que subas cambios para que los clientes reciban la actualización.
-const VERSION = 'lifezy-v3';
-const SHELL = ['./', './index.html', './manifest.webmanifest', './icon.svg', './icon-192.png', './icon-512.png'];
+const VERSION = 'lifezy-v4';
+const SHELL = ['./', './index.html', './manifest.webmanifest', './icon.svg', './icon-192.png', './icon-512.png', './portada.jpg'];
 
 self.addEventListener('install', e => {
   e.waitUntil(caches.open(VERSION).then(c => c.addAll(SHELL)).then(() => self.skipWaiting()));
