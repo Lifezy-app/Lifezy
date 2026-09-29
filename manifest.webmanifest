@@ -1,0 +1,14 @@
+{
+  "name": "Lifezy",
+  "short_name": "Lifezy",
+  "description": "Haz tu vida más fácil",
+  "start_url": "./#app",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#F5F7FB",
+  "theme_color": "#2350E0",
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}
